@@ -45,8 +45,8 @@ const HomeScreen = () => {
     const t = useTranslation();
     const state = useHomeState();
     const { loadingTokens } = useContext(EthersContext);
-    const loading = loadingTokens || state.loadingLPTokens || state.loadingPools;
-    const totalValue = sum(state.tokens) + sum(state.lpTokens) + sum(state.pools);
+    const loading = loadingTokens || state.loadingLPTokens;
+    const totalValue = sum(state.tokens) + sum(state.lpTokens);
     return (
         <Screen>
             <Container>
@@ -74,8 +74,6 @@ const Home = ({ state }: { state: HomeState }) => {
             <MyTokens state={state} />
             <View style={{ height: Spacing.large }} />
             <MyLPTokens state={state} />
-            <View style={{ height: Spacing.large }} />
-            <Pools state={state} />
         </View>
     );
 };
@@ -100,18 +98,6 @@ const MyLPTokens = ({ state }: { state: HomeState }) => {
             <Heading text={t("liquidity")} buttonText={t("manage")} onPressButton={goToRemoveLiquidity} />
             {/* @ts-ignore */}
             <TokenList loading={state.loadingLPTokens} tokens={state.lpTokens} TokenItem={LPTokenItem} />
-        </View>
-    );
-};
-
-const Pools = ({ state }: { state: HomeState }) => {
-    const t = useTranslation();
-    const goToFarming = useLinker("/farming", "Farming");
-    return (
-        <View>
-            <Heading text={t("farms")} buttonText={t("manage")} onPressButton={goToFarming} />
-            {/* @ts-ignore */}
-            <TokenList loading={state.loadingPools} tokens={state.pools} TokenItem={LPTokenItem} />
         </View>
     );
 };
