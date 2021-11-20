@@ -109,8 +109,9 @@ const Status = () => {
     const t = useTranslation();
     const { darkMode } = useContext(GlobalContext);
     const { textLight, green, borderDark } = useColors(!darkMode);
-    const { ethereum, chainId, status } = useContext(EthersContext);
-    const color = chainId === 1 ? green : chainId === 42 ? "#8A2BE2" : textLight;
+    const { ethereum, chainId, address, status } = useContext(EthersContext);
+    const connected = chainId === 1 && address;
+    const color = connected ? green : textLight;
     const onPress = () => {
         if (confirm(t("do-you-want-to-disconnect"))) ethereum?.disconnect?.();
     };
