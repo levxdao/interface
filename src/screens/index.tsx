@@ -18,6 +18,7 @@ const FarmingScreen = lazy(() => import("./FarmingScreen"));
 const HarvestScreen = lazy(() => import("./HarvestScreen"));
 const LiquidityScreen = lazy(() => import("./LiquidityScreen"));
 const MigrateScreen = lazy(() => import("./MigrateScreen"));
+const MigrateLPScreen = lazy(() => import("./MigrateLPScreen"));
 const RemoveLiquidityScreen = lazy(() => import("./RemoveLiquidityScreen"));
 const StakeScreen = lazy(() => import("./StakeScreen"));
 const UnstakeScreen = lazy(() => import("./UnstakeScreen"));
@@ -63,6 +64,9 @@ const WebScreens = () => {
                         </Route>
                         <Route path={"/migrate"}>
                             <MigrateScreen />
+                        </Route>
+                        <Route path={"/migrate/lp"}>
+                            <MigrateLPScreen />
                         </Route>
                         <Route path={"/staking/unstake"}>
                             <UnstakeScreen />

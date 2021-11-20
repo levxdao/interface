@@ -85,6 +85,8 @@
   "you-dont-have-liquidity": "You don't have any liquidity.",
   "output-tokens": "Output Token(s)",
   "will-be-converted-to": "{{fromSymbol}} will be converted to {{toSymbol}}",
+  "migrate": "Swap OH-GEEZ to LEVX",
+  "migrate-desc": "Swap your OH-GEEZ tokens to LEVX in a ratio of 1:10",
   "migrate-liquidity": "Migrate OH-GEEZ LP",
   "migrate-liquidity-desc": "Migrate your OH-GEEZ LP tokens to LEVX LP tokens.",
   "non-hardware-wallet": "In-browser MetaMask",

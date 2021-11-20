@@ -85,6 +85,8 @@
   "you-dont-have-liquidity": "예치한 유동성이 없습니다.",
   "output-tokens": "출금 토큰(들)",
   "will-be-converted-to": "{{fromSymbol}}가 {{toSymbol}}로 스왑됨",
+  "migrate": "OH-GEEZ을 LEVX로 환전",
+  "migrate-desc": "OH-GEEZ 토큰을 LEVX으로 1:10 비율로 환전하세요.",
   "migrate-liquidity": "OH-GEEZ LP 마이그레이션",
   "migrate-liquidity-desc": "OH-GEEZ LP 토큰을 LEVX LP 토큰으로 변환하세요.",
   "non-hardware-wallet": "브라우저 메타마스크 지갑",

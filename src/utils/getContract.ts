@@ -9,6 +9,7 @@ import ZapIn from "@sushiswap/zapper/artifacts/Sushiswap_ZapIn_General_V2.json";
 import ZapOut from "@sushiswap/zapper/artifacts/Sushiswap_ZapOut_General_V1.json";
 import { ethers } from "ethers";
 import LPTokenScanner from "../constants/abi/LPTokenScanner.json";
+import Swapper from "./Swapper.json";
 import Migratoooooor from "./Migratoooooor.json";
 
 const CONTRACTS = {
@@ -20,6 +21,7 @@ const CONTRACTS = {
     MasterChef,
     SushiBar,
     LPTokenScanner: { abi: LPTokenScanner },
+    Swapper,
     Migratoooooor,
     ZapIn,
     ZapOut

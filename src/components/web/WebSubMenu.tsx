@@ -69,8 +69,12 @@ export const MigrateSubMenu = () => {
         <WebSubMenu
             items={[
                 {
-                    title: t("migrate-liquidity"),
+                    title: t("migrate"),
                     path: "/migrate"
+                },
+                {
+                    title: t("migrate-liquidity"),
+                    path: "/migrate/lp"
                 }
             ]}
         />
