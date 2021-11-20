@@ -15,10 +15,14 @@ jobs:
         with:
           node-version: '14'
           cache: 'yarn'
+      - uses: expo/expo-github-action@v6
+        with:
+          expo-version: 4.x
+          token: ${{ secrets.EXPO_TOKEN }}
       - name: Install and Build
         run: yarn install
       - name: Build Expo Web
-        run: yarn expo build:web
+        run: expo build:web
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.6
         with:
