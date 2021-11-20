@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "SushiSwap Lite",
-    "slug": "sushiswap-app",
+    "name": "LevX DAO",
+    "slug": "levx-dao",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -23,14 +23,13 @@
       "favicon": "./assets/images/icon.png",
       "config": {
         "firebase": {
-          "apiKey": "AIzaSyANcyrmKaNPrM3QuRR17eA5a6iIDYt4NfQ",
-          "authDomain": "sushiswap-levx.firebaseapp.com",
-          "databaseURL": "https://sushiswap-levx.firebaseio.com",
-          "projectId": "sushiswap-levx",
-          "storageBucket": "sushiswap-levx.appspot.com",
-          "messagingSenderId": "967519785649",
-          "appId": "1:967519785649:web:131c698ed8aa881bdd8890",
-          "measurementId": "G-T98X3TB4HC"
+          "apiKey": "AIzaSyAqqpGqa-CbG-5kXEWmCI2NSdRICHDmMI8",
+          "authDomain": "levx-dao.firebaseapp.com",
+          "projectId": "levx-dao",
+          "storageBucket": "levx-dao.appspot.com",
+          "messagingSenderId": "1039277630301",
+          "appId": "1:1039277630301:web:59cbb545e536f0f186beb4",
+          "measurementId": "G-6J0X6MZ5TL"
         }
       }
     }
