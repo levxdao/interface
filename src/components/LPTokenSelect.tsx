@@ -16,13 +16,12 @@ import SelectIcon from "./SelectIcon";
 import Text from "./Text";
 import TokenLogo from "./TokenLogo";
 
-export type LPTokenSelectFilter = "balance" | "amountDeposited" | "";
-
 export interface LPTokenSelectProps {
     state: LPTokensState;
     title: string;
     emptyText: string;
     Item: FC<LPTokenItemProps>;
+    disabled?: boolean;
     style?: ViewStyle;
 }
 
@@ -43,7 +42,11 @@ const LPTokenSelect: FC<LPTokenSelectProps> = props => {
                 <LPTokenList state={props.state} emptyText={props.emptyText} Item={props.Item} />
             </Expandable>
             {props.state.selectedLPToken && (
-                <props.Item token={props.state.selectedLPToken} selected={true} onSelectToken={onUnselectToken} />
+                <props.Item
+                    token={props.state.selectedLPToken}
+                    selected={true}
+                    onSelectToken={props.disabled ? () => {} : onUnselectToken}
+                />
             )}
         </View>
     );

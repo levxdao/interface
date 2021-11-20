@@ -1,6 +1,5 @@
 import { FACTORY_ADDRESS as SUSHISWAP_FACTORY, Pair } from "@sushiswap/sdk";
 import sushiData from "@sushiswap/sushi-data";
-import { FACTORY_ADDRESS as UNISWAP_FACTORY } from "@uniswap/sdk";
 import { ethers } from "ethers";
 import { LP_TOKEN_SCANNER, MASTER_CHEF } from "../constants/contracts";
 import Fraction from "../constants/Fraction";
@@ -194,14 +193,6 @@ const fetchPairTokens = async (pair: string, tokens: Token[], provider: ethers.p
 
 export const fetchMyLPTokens = async (account: string, tokens: Token[], provider: ethers.providers.JsonRpcProvider) => {
     return await fetchLPTokens(SUSHISWAP_FACTORY, account, tokens, provider);
-};
-
-export const fetchMyUniswapLPTokens = async (
-    account: string,
-    tokens: Token[],
-    provider: ethers.providers.JsonRpcProvider
-) => {
-    return await fetchLPTokens(UNISWAP_FACTORY, account, tokens, provider);
 };
 
 const LP_TOKENS_LIMIT = 100;

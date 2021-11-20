@@ -22,7 +22,7 @@ import Title from "../components/Title";
 import TokenInput from "../components/TokenInput";
 import WebFooter from "../components/web/WebFooter";
 import { MigrateSubMenu } from "../components/web/WebSubMenu";
-import { SUSHI_ROLL } from "../constants/contracts";
+import { MIGRATOOOOOOR } from "../constants/contracts";
 import { Spacing } from "../constants/dimension";
 import { EthersContext } from "../context/EthersContext";
 import useLinker from "../hooks/useLinker";
@@ -62,7 +62,7 @@ const Migrate = () => {
                     <Border />
                 </>
             )}
-            <UniswapLiquidityScreen state={state} />
+            <OhGeezLiquidity state={state} />
             <Border />
             <AmountInput state={state} />
             <AmountInfo state={state} />
@@ -94,24 +94,26 @@ const MigrateModeSelect = ({ state }: { state: MigrateState }) => {
     );
 };
 
-const UniswapLiquidityScreen = ({ state }: { state: MigrateState }) => {
+const OhGeezLiquidity = ({ state }: { state: MigrateState }) => {
     const t = useTranslation();
+    const title = "OH-GEEZ " + t("liquidity");
     if (!state.mode) {
-        return <Heading text={t("your-uniswap-liquidity")} disabled={true} />;
+        return <Heading text={title} disabled={true} />;
     }
     return (
         <LPTokenSelect
             state={state}
-            title={t("your-uniswap-liquidity")}
-            emptyText={t("you-dont-have-any-liquidity-on-uniswap")}
+            title={title}
+            emptyText={t("you-dont-have-liquidity")}
             Item={LPTokenItem}
+            disabled={true}
         />
     );
 };
 
 const AmountInput = ({ state }: { state: MigrateState }) => {
     const t = useTranslation();
-    if (!state.selectedLPToken) {
+    if (!state.mode || !state.selectedLPToken) {
         return <Heading text={t("amount-of-tokens")} disabled={true} />;
     }
     return (
@@ -125,10 +127,20 @@ const AmountInput = ({ state }: { state: MigrateState }) => {
 };
 
 const AmountInfo = ({ state }: { state: MigrateState }) => {
+    const t = useTranslation();
     const disabled = !state.selectedLPToken || isEmptyValue(state.amount);
     return (
         <InfoBox>
-            <Meta label={state.selectedLPToken?.symbol || "SushiSwap LP"} text={state.amount} disabled={disabled} />
+            <Meta
+                label={state.fromToken ? state.fromToken.symbol : t("1st-token")}
+                text={state.fromAmount}
+                disabled={disabled}
+            />
+            <Meta
+                label={state.toToken ? state.toToken.symbol : t("2nd-token")}
+                text={state.toAmount}
+                disabled={disabled}
+            />
             <Controls state={state} />
         </InfoBox>
     );
@@ -150,7 +162,7 @@ const Controls = ({ state }: { state: MigrateState }) => {
                     {state.mode === "approve" && !state.selectedLPTokenAllowed && (
                         <ApproveButton
                             token={state.selectedLPToken}
-                            spender={SUSHI_ROLL}
+                            spender={MIGRATOOOOOOR}
                             onSuccess={() => state.setSelectedLPTokenAllowed(true)}
                             onError={setError}
                         />

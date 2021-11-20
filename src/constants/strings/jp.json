@@ -82,8 +82,6 @@
   "you-dont-have-liquidity": "提供中の流動性はありません。",
   "output-tokens": "アウトプットするトークン",
   "will-be-converted-to": "{{fromSymbol}} は {{toSymbol}} に変換されます",
-  "migrate-liquidity": "流動性の移行",
-  "migrate-liquidity-desc": "ユニスワップのLPトークンをスシスワップのLPトークンに移行する。",
   "non-hardware-wallet": "非ハードウェアウォレット",
   "non-hardware-wallet-desc": "あなたの署名（許可）を利用することでワンクリックで移行が完了します。",
   "hardware-wallet": "ハードウェアウォレット (TrezorやLedgerなど)",

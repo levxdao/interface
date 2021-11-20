@@ -82,8 +82,6 @@
   "you-dont-have-liquidity": "Vous n’avez pas de liquidités disponibles.",
   "output-tokens": "Tokens à recevoir",
   "will-be-converted-to": "{{fromSymbol}} seront convertis en {{toSymbol}}",
-  "migrate-liquidity": "Transférer ses liquidités",
-  "migrate-liquidity-desc": "Transférez vos tokens LP Uniswap vers SushiSwap.",
   "non-hardware-wallet": "Wallet non-hardware",
   "non-hardware-wallet-desc": "Le transfert se fait en un clic grâce à votre signature (autorisation).",
   "hardware-wallet": "Hardware wallet (Trezor, Ledger, etc.)",

@@ -37,7 +37,7 @@ const WebFooter = ({ simple = false }) => {
                 </>
             )}
             <Text note={true} style={{ marginTop: Spacing.tiny }}>
-                Built with ❤️ by SushiSwap (v{Constants.manifest.version})
+                Built by the Dicktator of LevX DAO (v{Constants.manifest.version})
             </Text>
             <FlexView style={{ marginTop: Spacing.small }}>
                 <Flag name={"us"} locale={"en"} />
