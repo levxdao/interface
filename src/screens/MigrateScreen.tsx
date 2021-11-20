@@ -189,12 +189,10 @@ const MigrateButton = ({
     disabled: boolean;
 }) => {
     const t = useTranslation();
-    const goToFarm = useLinker("/farming", "Farming");
     const onPress = async () => {
         onError({});
         try {
             await state.onMigrate();
-            goToFarm();
         } catch (e) {
             onError(e);
         }
