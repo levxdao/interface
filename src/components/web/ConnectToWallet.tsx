@@ -58,7 +58,7 @@ const ConnectButton = () => {
 
 const WalletConnectButton = () => {
     const { darkMode } = useContext(GlobalContext);
-    const { primary } = useColors();
+    const { secondary } = useColors();
     const { setEthereum } = useContext(EthersContext);
     const onPress = async () => {
         const ethereum = new WalletConnectProvider({
@@ -74,7 +74,7 @@ const WalletConnectButton = () => {
         <Button
             size={"large"}
             type={"outline"}
-            color={darkMode ? "white" : primary}
+            color={darkMode ? "white" : secondary}
             onPress={onPress}
             title={"WalletConnect"}
             containerStyle={{ width: IS_DESKTOP ? 440 : "100%" }}
