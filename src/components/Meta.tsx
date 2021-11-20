@@ -12,12 +12,13 @@ export interface MetaProps {
     text?: string;
     suffix?: string;
     url?: string;
+    danger?: boolean;
     disabled?: boolean;
 }
 
 const Meta: FC<MetaProps> = props => {
     const t = useTranslation();
-    const { textMedium, textLight, placeholder } = useColors();
+    const { textMedium, textLight, placeholder, red } = useColors();
     const onPress = useLinker(props.url || "", "", "_blank");
     const text = props.disabled
         ? "N/A"
@@ -33,7 +34,7 @@ const Meta: FC<MetaProps> = props => {
                 note={!IS_DESKTOP}
                 onPress={props.url ? onPress : undefined}
                 style={{
-                    color: props.disabled ? placeholder : props.text ? textMedium : textLight,
+                    color: props.danger ? red : props.disabled ? placeholder : props.text ? textMedium : textLight,
                     textDecorationLine: props.url ? "underline" : "none"
                 }}>
                 {text}

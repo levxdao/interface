@@ -17,6 +17,7 @@ import InfoBox from "../components/InfoBox";
 import InsufficientBalanceButton from "../components/InsufficientBalanceButton";
 import Meta from "../components/Meta";
 import Notice from "../components/Notice";
+import PriceImpactTooHighButton from "../components/PriceImpactTooHighButton";
 import Text from "../components/Text";
 import Title from "../components/Title";
 import TokenInput from "../components/TokenInput";
@@ -32,6 +33,8 @@ import useTranslation from "../hooks/useTranslation";
 import MetamaskError from "../types/MetamaskError";
 import { isEmptyValue, isETH, isETHWETHPair, isWETH, parseBalance } from "../utils";
 import Screen from "./Screen";
+
+const MAX_PRICE_IMPACT = 7;
 
 const SwapScreen = () => {
     const t = useTranslation();
@@ -169,8 +172,14 @@ const SwapInfo = ({ state, disabled }: { state: SwapState; disabled: boolean }) 
                 suffix={state.toSymbol + "  = 1 " + state.fromSymbol}
                 disabled={disabled}
             />
-            <Meta label={t("price-impact")} text={impact} suffix={"%"} disabled={disabled} />
             <Meta label={t("fee-amount")} text={state.swapFee} suffix={state.fromSymbol} disabled={disabled} />
+            <Meta
+                label={t("price-impact")}
+                text={impact}
+                suffix={"%"}
+                danger={!!impact && Number(impact) > MAX_PRICE_IMPACT}
+                disabled={disabled}
+            />
             <SwapControls state={state} />
         </View>
     );
@@ -181,6 +190,7 @@ const SwapControls = ({ state }: { state: SwapState }) => {
     const [error, setError] = useState<MetamaskError>({});
     useAsyncEffect(() => setError({}), [state.fromSymbol, state.toSymbol, state.fromAmount]);
     const approveRequired = !isETH(state.fromToken) && !state.fromTokenAllowed;
+    const impact = state.trade?.priceImpact?.toFixed(2);
     return (
         <View style={{ marginTop: Spacing.normal }}>
             {!state.fromToken ||
@@ -198,6 +208,8 @@ const SwapControls = ({ state }: { state: SwapState }) => {
                 <UnsupportedButton state={state} />
             ) : state.loading || !state.trade ? (
                 <FetchingButton />
+            ) : impact && Number(impact) > MAX_PRICE_IMPACT ? (
+                <PriceImpactTooHighButton />
             ) : (
                 <>
                     <ApproveButton

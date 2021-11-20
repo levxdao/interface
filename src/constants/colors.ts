@@ -2,7 +2,7 @@ export const Colors = {
     common: {
         white: "#ffffff",
         transparent: "#ffffff00",
-        primary: "#FA52A0",
+        primary: "#ed1c27",
         secondary: "#27B0E6",
         green: "#32CD32",
         red: "#FF0000",
@@ -10,7 +10,7 @@ export const Colors = {
         facebook: "#3B5998"
     },
     light: {
-        accent: "#FA52A0",
+        accent: "#ed1c27",
         header: "#ed1c27",
         submenu: "#024fa2",
         background: "#ffffff",

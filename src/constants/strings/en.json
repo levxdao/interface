@@ -125,6 +125,7 @@
   "deposited-token-1": "Deposited Token 1",
   "deposited-token-2": "Deposited Token 2",
   "insufficient-amount": "Insufficient Amount",
+  "price-impact-too-high": "Price Impact Too High",
   "withdraw": "Withdraw",
   "approve-": "Approve {{symbol}}",
   "change": "Change",
