@@ -3,14 +3,19 @@ on:
   push:
     branches:
       - master
+env:
+  MAINNET_API_KEY: ${{secrets.MAINNET_API_KEY}}
+  KOVAN_API_KEY: ${{secrets.KOVAN_API_KEY}}
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Install and Build
         run: yarn install
+      - name: Build Expo Web
+        run: yarn expo build:web
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.6
         with:
           branch: gh-pages
-          folder: build
+          folder: web-build

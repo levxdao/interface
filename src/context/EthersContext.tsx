@@ -19,14 +19,8 @@ import { fetchTokens, fetchTokenWithValue } from "../utils/fetch-utils";
 
 export type OnBlockListener = (block?: number) => void | Promise<void>;
 
-export const ALCHEMY_PROVIDER = new ethers.providers.AlchemyProvider(
-    1,
-    __DEV__ ? process.env.MAINNET_API_KEY : "Em65gXMcaJl7JF9ZxcMwa4r5TcrU8wZV"
-);
-export const KOVAN_PROVIDER = new ethers.providers.AlchemyProvider(
-    42,
-    __DEV__ ? process.env.KOVAN_API_KEY : "MOX3sLJxKwltJjW6XZ8aBtDpenq-18St"
-);
+export const ALCHEMY_PROVIDER = new ethers.providers.AlchemyProvider(1, process.env.MAINNET_API_KEY);
+export const KOVAN_PROVIDER = new ethers.providers.AlchemyProvider(42, process.env.KOVAN_API_KEY);
 
 export const EthersContext = React.createContext({
     ethereum: undefined as Ethereum | undefined,
