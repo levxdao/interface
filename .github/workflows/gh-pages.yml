@@ -23,6 +23,8 @@ jobs:
         run: yarn install
       - name: Build Expo Web
         run: expo build:web
+      - name: Setup domain
+        run: echo "levxdao.org" > web-build/CNAME
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.6
         with:

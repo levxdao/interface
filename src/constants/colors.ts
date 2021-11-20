@@ -10,7 +10,7 @@ export const Colors = {
         facebook: "#3B5998"
     },
     light: {
-        accent: "#ffffff",
+        accent: "#FA52A0",
         header: "#ed1c27",
         submenu: "#024fa2",
         background: "#ffffff",
