@@ -39,10 +39,6 @@ export const SwapSubMenu = () => {
                 {
                     title: t("new-order"),
                     path: "/swap"
-                },
-                {
-                    title: t("my-orders"),
-                    path: "/swap/my-orders"
                 }
             ]}
         />

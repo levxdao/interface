@@ -6,8 +6,6 @@ import IWETH from "@sushiswap/core/build/contracts/IWETH.json";
 import MasterChef from "@sushiswap/core/build/contracts/MasterChef.json";
 import SushiBar from "@sushiswap/core/build/contracts/SushiBar.json";
 import SushiRoll from "@sushiswap/core/build/contracts/SushiRoll.json";
-import OrderBook from "@sushiswap/settlement/deployments/kovan/OrderBook.json";
-import Settlement from "@sushiswap/settlement/deployments/mainnet/Settlement.json";
 import ZapIn from "@sushiswap/zapper/artifacts/Sushiswap_ZapIn_General_V2.json";
 import ZapOut from "@sushiswap/zapper/artifacts/Sushiswap_ZapOut_General_V1.json";
 import { ethers } from "ethers";
@@ -22,8 +20,6 @@ const CONTRACTS = {
     MasterChef,
     SushiBar,
     SushiRoll,
-    OrderBook,
-    Settlement,
     LPTokenScanner: { abi: LPTokenScanner },
     ZapIn,
     ZapOut

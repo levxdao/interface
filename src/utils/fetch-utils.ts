@@ -2,11 +2,10 @@ import { FACTORY_ADDRESS as SUSHISWAP_FACTORY, Pair } from "@sushiswap/sdk";
 import sushiData from "@sushiswap/sushi-data";
 import { FACTORY_ADDRESS as UNISWAP_FACTORY } from "@uniswap/sdk";
 import { ethers } from "ethers";
-import { LP_TOKEN_SCANNER, MASTER_CHEF, ORDER_BOOK, SETTLEMENT } from "../constants/contracts";
+import { LP_TOKEN_SCANNER, MASTER_CHEF } from "../constants/contracts";
 import Fraction from "../constants/Fraction";
 import { ETH } from "../constants/tokens";
-import { ALCHEMY_PROVIDER, KOVAN_PROVIDER } from "../context/EthersContext";
-import { Order, OrderStatus } from "../hooks/useSettlement";
+import { ALCHEMY_PROVIDER } from "../context/EthersContext";
 import LPToken from "../types/LPToken";
 import Token from "../types/Token";
 import TokenWithValue from "../types/TokenWithValue";
@@ -331,49 +330,4 @@ const fetchTotalValue = async (token: Token, lpPair: Pair, weth: Token, wethPric
 const fetchTokenBalances = async (account: string, addresses: string[]) => {
     const balances = await ALCHEMY_PROVIDER.send("alchemy_getTokenBalances", [account, addresses]);
     return balances.tokenBalances.map(balance => balance.tokenBalance);
-};
-
-const LIMIT_ORDERS_LIMIT = 20;
-
-export const fetchMyLimitOrders = async (
-    provider: ethers.providers.JsonRpcProvider,
-    signer: ethers.Signer,
-    tokens?: Token[],
-    canceledHashes?: string[]
-) => {
-    const orderBook = getContract("OrderBook", ORDER_BOOK, KOVAN_PROVIDER);
-    const settlement = await getContract("Settlement", SETTLEMENT, provider);
-    const maker = await signer.getAddress();
-    const length = await orderBook.numberOfHashesOfMaker(maker);
-    const pages: number[] = [];
-    for (let i = 0; i * LIMIT_ORDERS_LIMIT < length; i++) pages.push(i);
-    const hashes = (await Promise.all(pages.map(page => orderBook.hashesOfMaker(maker, page, LIMIT_ORDERS_LIMIT))))
-        .flat()
-        .filter(hash => hash !== ethers.constants.HashZero);
-    const myOrders = await Promise.all(
-        hashes.map(async hash => {
-            const args = await orderBook.orderOfHash(hash);
-            return new Order(
-                signer,
-                await findOrFetchToken(args.fromToken, provider, tokens),
-                await findOrFetchToken(args.toToken, provider, tokens),
-                args.amountIn,
-                args.amountOutMin,
-                args.recipient,
-                args.deadline,
-                args.v,
-                args.r,
-                args.s,
-                await settlement.filledAmountInOfHash(hash),
-                canceledHashes && canceledHashes.includes(hash)
-            );
-        })
-    );
-    return myOrders.sort(compareOrders) as Order[];
-};
-
-const compareOrders = (o0, o1) => {
-    const status = (s: OrderStatus) => (s === "Open" ? 0 : s === "Filled" ? 1 : 2);
-    const compared = status(o0.status()) - status(o1.status());
-    return compared === 0 ? o1.deadline.toNumber() - o0.deadline.toNumber() : compared;
 };
