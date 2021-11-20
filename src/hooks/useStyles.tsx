@@ -9,7 +9,7 @@ const useStyles = () => {
     const border = useCallback(
         (attrs?: { color?: string; radius?: number }) => ({
             borderColor: attrs?.color || borderDark,
-            borderWidth: 1,
+            borderWidth: 0.5,
             borderRadius: attrs?.radius || 8,
             padding: Spacing.small
         }),
