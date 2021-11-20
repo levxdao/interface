@@ -3,7 +3,7 @@ export const Colors = {
         white: "#ffffff",
         transparent: "#ffffff00",
         primary: "#ed1c27",
-        secondary: "#024fa2",
+        secondary: "#27B0E6",
         green: "#32CD32",
         red: "#FF0000",
         twitter: "#1da1f2",
@@ -26,7 +26,7 @@ export const Colors = {
         overlay: "#ffffffc0"
     },
     dark: {
-        accent: "#024fa2",
+        accent: "#27B0E6",
         header: "#0D0E20",
         submenu: "#00000020",
         background: "#0e0f23",
