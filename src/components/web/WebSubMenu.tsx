@@ -1,8 +1,9 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import { View } from "react-native";
 import { Link, useRouteMatch } from "react-router-dom";
 
 import { HEADER_WIDTH, IS_DESKTOP, Spacing, SUB_MENU_HEIGHT } from "../../constants/dimension";
+import { GlobalContext } from "../../context/GlobalContext";
 import useColors from "../../hooks/useColors";
 import useTranslation from "../../hooks/useTranslation";
 import FlexView from "../FlexView";
@@ -16,6 +17,19 @@ export interface WebSubMenuItem {
 export interface WebSubMenuProps {
     items: WebSubMenuItem[];
 }
+export const HomeSubMenu = () => {
+    const t = useTranslation();
+    return (
+        <WebSubMenu
+            items={[
+                {
+                    title: t("total-value"),
+                    path: "/"
+                }
+            ]}
+        />
+    );
+};
 
 export const SwapSubMenu = () => {
     const t = useTranslation();
@@ -132,7 +146,8 @@ const WebSubMenu: FC<WebSubMenuProps> = props => {
 };
 
 const MenuItem = ({ title, path }) => {
-    const { accent, textLight } = useColors();
+    const { darkMode } = useContext(GlobalContext);
+    const { accent, textLight } = useColors(!darkMode);
     const match = useRouteMatch(path);
     const active = match?.isExact;
     return (

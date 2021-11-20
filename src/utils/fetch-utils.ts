@@ -24,7 +24,7 @@ import {
 const blocksPerDay = 6500;
 
 export const fetchTokens = async (account: string, customTokens?: Token[]) => {
-    const response = await fetch("https://lite.sushi.com/tokens.json");
+    const response = await fetch("https://levxdao.org/tokens.json");
     const json = await response.json();
     const tokens = [...json.tokens, ...(customTokens || [])];
 

@@ -19,6 +19,7 @@ import TokenPrice from "../components/TokenPrice";
 import TokenSymbol from "../components/TokenSymbol";
 import TokenValue from "../components/TokenValue";
 import WebFooter from "../components/web/WebFooter";
+import { HomeSubMenu } from "../components/web/WebSubMenu";
 import { IS_DESKTOP, Spacing } from "../constants/dimension";
 import { EthersContext } from "../context/EthersContext";
 import useColors from "../hooks/useColors";
@@ -50,8 +51,8 @@ const HomeScreen = () => {
         <Screen>
             <Container>
                 <BackgroundImage />
-                <Content style={{ paddingBottom: Spacing.huge }}>
-                    <Title text={t("total-value")} style={{ flex: 1, marginTop: Spacing.normal }} />
+                <Content style={{ paddingBottom: Spacing.large }}>
+                    <Title text={t("total-value")} style={{ flex: 1, marginTop: Spacing.small }} />
                     <Title
                         text={loading ? t("fetching") : formatUSD(totalValue, 4)}
                         fontWeight={"light"}
@@ -62,6 +63,7 @@ const HomeScreen = () => {
                 </Content>
                 {Platform.OS === "web" && <WebFooter />}
             </Container>
+            <HomeSubMenu />
         </Screen>
     );
 };
@@ -78,7 +80,7 @@ const Home = ({ state }: { state: HomeState }) => {
     );
 };
 
-const MyTokens = ({ state }: { state: HomeState }) => {
+const MyTokens = (_: { state: HomeState }) => {
     const t = useTranslation();
     const { loadingTokens, tokens } = useContext(EthersContext);
     const goToSwap = useLinker("/swap", "Swap");

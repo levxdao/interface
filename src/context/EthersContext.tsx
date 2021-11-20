@@ -9,6 +9,7 @@ import useAsyncEffect from "use-async-effect";
 import Fraction from "../constants/Fraction";
 import { ETH } from "../constants/tokens";
 import useSDK from "../hooks/useSDK";
+import useTranslation from "../hooks/useTranslation";
 import Ethereum from "../types/Ethereum";
 import Token from "../types/Token";
 import TokenWithValue from "../types/TokenWithValue";
@@ -35,6 +36,7 @@ export const EthersContext = React.createContext({
     chainId: 0,
     address: null as string | null,
     ensName: null as string | null,
+    status: null as string | null,
     addOnBlockListener: (_name: string, _listener: OnBlockListener) => {},
     removeOnBlockListener: (_name: string) => {},
     tokens: [ETH] as TokenWithValue[],
@@ -70,6 +72,10 @@ export const EthersContextProvider = ({ children }) => {
     const [tokens, setTokens] = useState<TokenWithValue[]>([]);
     const [customTokens, setCustomTokens] = useState<Token[]>([]);
     const [loadingTokens, setLoadingTokens] = useState(true);
+    const translate = useTranslation();
+    const status = !!address
+        ? ensName || address!.substring(0, 6) + "..." + address!.substring(address!.length - 4, address!.length)
+        : translate("menu.not-connected");
 
     useAsyncEffect(async () => {
         // Mainnet
@@ -261,6 +267,7 @@ export const EthersContextProvider = ({ children }) => {
                 chainId,
                 address,
                 ensName,
+                status,
                 tokens,
                 updateTokens,
                 loadingTokens,

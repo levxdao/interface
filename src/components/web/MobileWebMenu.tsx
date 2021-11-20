@@ -72,13 +72,9 @@ const MobileWebMenuItem = ({ title, path }) => {
 };
 
 const Status = () => {
-    const t = useTranslation();
     const { textLight, green, accent } = useColors();
-    const { ethereum, chainId, address, ensName } = useContext(EthersContext);
+    const { ethereum, chainId, address, status } = useContext(EthersContext);
     const connected = chainId === 1 && address;
-    const title = connected
-        ? ensName || address!.substring(0, 6) + "..." + address!.substring(address!.length - 4, address!.length)
-        : t("menu.not-connected");
     const color = connected ? green : textLight;
     const onPress = () => {
         ethereum?.disconnect?.();
@@ -87,7 +83,7 @@ const Status = () => {
         <View>
             <FlexView style={{ marginBottom: Spacing.tiny }}>
                 <View style={{ backgroundColor: color, width: 6, height: 6, borderRadius: 3, marginTop: 8 }} />
-                <Text style={{ fontSize: 18, color: textLight, marginLeft: 8 }}>{title}</Text>
+                <Text style={{ fontSize: 18, color: textLight, marginLeft: 8 }}>{status}</Text>
             </FlexView>
             {ethereum?.isWalletConnect && (
                 <Text

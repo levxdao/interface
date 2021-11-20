@@ -1,5 +1,5 @@
 import React, { FC, useContext } from "react";
-import { TouchableHighlight, View } from "react-native";
+import { Image, TouchableHighlight, View } from "react-native";
 import { Icon } from "react-native-elements";
 import { Link, useRouteMatch } from "react-router-dom";
 
@@ -10,8 +10,6 @@ import useColors from "../../hooks/useColors";
 import useTranslation from "../../hooks/useTranslation";
 import DarkModeSwitch from "../DarkModeSwitch";
 import FlexView from "../FlexView";
-import SvgLogoDark from "../svg/SvgLogoDark";
-import SvgLogoLight from "../svg/SvgLogoLight";
 import Text from "../Text";
 
 export interface WebHeaderProps {
@@ -52,12 +50,11 @@ const WebHeader: FC<WebHeaderProps> = props => {
 };
 
 export const Title = () => {
-    const { darkMode } = useContext(GlobalContext);
-    const SvgLogo = darkMode ? SvgLogoDark : SvgLogoLight;
+    const icon = require("../../../assets/images/icon-circle.png");
     return (
         <View style={{ alignSelf: "center" }}>
             <Link to={"/"} style={{ textDecoration: "none" }}>
-                <SvgLogo width={259} height={45} style={{ marginTop: 8, marginLeft: -16 }} />
+                <Image source={icon} style={{ width: 40, height: 40, marginTop: 4, marginLeft: -16 }} />
             </Link>
         </View>
     );
@@ -84,7 +81,8 @@ const Menu = () => {
 };
 
 const MenuItem = ({ title, path }) => {
-    const { textDark, textLight } = useColors();
+    const { darkMode } = useContext(GlobalContext);
+    const { textDark, textLight } = useColors(!darkMode);
     const match = useRouteMatch(path);
     const active = (path === "/" ? match?.isExact : true) && match?.path?.startsWith(path);
     return (
@@ -109,11 +107,9 @@ const MenuIcon = ({ onExpand }) => {
 
 const Status = () => {
     const t = useTranslation();
-    const { textLight, green, borderDark } = useColors();
-    const { ethereum, chainId, address, ensName } = useContext(EthersContext);
-    const title = !!address
-        ? ensName || address!.substring(0, 6) + "..." + address!.substring(address!.length - 4, address!.length)
-        : t("menu.not-connected");
+    const { darkMode } = useContext(GlobalContext);
+    const { textLight, green, borderDark } = useColors(!darkMode);
+    const { ethereum, chainId, status } = useContext(EthersContext);
     const color = chainId === 1 ? green : chainId === 42 ? "#8A2BE2" : textLight;
     const onPress = () => {
         if (confirm(t("do-you-want-to-disconnect"))) ethereum?.disconnect?.();
@@ -125,6 +121,7 @@ const Status = () => {
                     height: 28,
                     justifyContent: "center",
                     alignItems: "center",
+                    marginTop: Spacing.tiny / 2,
                     marginLeft: Spacing.small,
                     paddingHorizontal: Spacing.small,
                     borderRadius: 16,
@@ -132,7 +129,7 @@ const Status = () => {
                     borderColor: borderDark
                 }}>
                 <View style={{ backgroundColor: color, width: 6, height: 6, borderRadius: 3, marginRight: 12 }} />
-                <Text style={{ fontSize: 15, color: textLight, marginRight: 2 }}>{title}</Text>
+                <Text style={{ fontSize: 15, color: textLight, marginRight: 2 }}>{status}</Text>
                 {ethereum?.isWalletConnect && <CloseIcon />}
             </FlexView>
         </TouchableHighlight>

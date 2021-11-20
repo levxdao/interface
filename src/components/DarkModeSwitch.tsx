@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { TouchableHighlight, View } from "react-native";
 
+import { Spacing } from "../constants/dimension";
 import { GlobalContext } from "../context/GlobalContext";
 import useColors from "../hooks/useColors";
 import SvgMoon from "./svg/SvgMoon";
@@ -13,7 +14,7 @@ const DarkModeSwitch = props => {
         await setDarkMode(!darkMode);
     };
     return (
-        <View style={props.style}>
+        <View style={[{ marginTop: Spacing.tiny / 2 }, props.style]}>
             <TouchableHighlight activeOpacity={0.7} underlayColor={overlay} onPress={onPress}>
                 {darkMode ? (
                     <SvgMoon width={24} height={24} style={{ margin: 3 }} />

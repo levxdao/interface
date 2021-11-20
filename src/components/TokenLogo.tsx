@@ -15,8 +15,8 @@ const TokenLogo = (props: {
     const { backgroundLight: disabled } = useColors();
     const [error, setError] = useState(false);
     const size = props.small ? 22 : 27;
-    const placeholder = require("../../assets/empty-token.png");
-    const ETH = require("../../assets/ETH.png");
+    const placeholder = require("../../assets/images/empty-token.png");
+    const ETH = require("../../assets/images/ETH.png");
     const source = props.replaceWETH && isWETH(props.token) ? ETH : { uri: props.token.logoURI };
     return (
         <View

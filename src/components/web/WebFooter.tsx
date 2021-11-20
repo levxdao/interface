@@ -30,7 +30,7 @@ const WebFooter = ({ simple = false }) => {
                     <SocialIcons />
                     <TouchableHighlight onPress={onPressAlchemy}>
                         <Image
-                            source={require("../../../assets/alchemy.png")}
+                            source={require("../../../assets/images/alchemy.png")}
                             style={{ width: 188, height: 40, marginTop: Spacing.tiny }}
                         />
                     </TouchableHighlight>

@@ -3,6 +3,6 @@
 expo build:web
 web_build_return_code="$?"
 
-echo "lite.sushi.com" > web-build/CNAME
+echo "levxdao.org" > web-build/CNAME
 
 exit "${web_build_return_code}"

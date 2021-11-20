@@ -15,9 +15,9 @@ const ConnectWallet = () => {
     const metaMask = window.ethereum?.isMetaMask || false;
     const source = metaMask
         ? darkMode
-            ? require("../../../assets/metamask-dark.png")
-            : require("../../../assets/metamask.png")
-        : require("../../../assets/sushiswap.jpg");
+            ? require("../../../assets/images/metamask-dark.png")
+            : require("../../../assets/images/metamask.png")
+        : require("../../../assets/images/icon.png");
     return (
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
             <Image
