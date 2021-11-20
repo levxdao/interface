@@ -2,8 +2,8 @@
   "files": {
     "static/js/0.44f56b16.chunk.js": "./static/js/0.44f56b16.chunk.js",
     "static/js/0.44f56b16.chunk.js.map": "./static/js/0.44f56b16.chunk.js.map",
-    "app.js": "./static/js/app.0b03fd58.chunk.js",
-    "app.js.map": "./static/js/app.0b03fd58.chunk.js.map",
+    "app.js": "./static/js/app.78112c67.chunk.js",
+    "app.js.map": "./static/js/app.78112c67.chunk.js.map",
     "runtime~app.js": "./static/js/runtime~app.b47124f1.js",
     "runtime~app.js.map": "./static/js/runtime~app.b47124f1.js.map",
     "static/js/3.9041e87f.chunk.js": "./static/js/3.9041e87f.chunk.js",
@@ -71,7 +71,6 @@
     "images/tokens/yUSD.png": "./images/tokens/yUSD.png",
     "index.html": "./index.html",
     "manifest.json": "./manifest.json",
-    "pools.json": "./pools.json",
     "serve.json": "./serve.json",
     "static/js/3.9041e87f.chunk.js.LICENSE.txt": "./static/js/3.9041e87f.chunk.js.LICENSE.txt",
     "static/js/4.b00f67ad.chunk.js.LICENSE.txt": "./static/js/4.b00f67ad.chunk.js.LICENSE.txt",
@@ -97,6 +96,6 @@
   "entrypoints": [
     "static/js/runtime~app.b47124f1.js",
     "static/js/3.9041e87f.chunk.js",
-    "static/js/app.0b03fd58.chunk.js"
+    "static/js/app.78112c67.chunk.js"
   ]
 }
