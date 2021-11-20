@@ -62,11 +62,11 @@ const WebScreens = () => {
                         <Route path={"/farming"}>
                             <FarmingScreen />
                         </Route>
-                        <Route path={"/migrate"}>
-                            <MigrateScreen />
-                        </Route>
                         <Route path={"/migrate/lp"}>
                             <MigrateLPScreen />
+                        </Route>
+                        <Route path={"/migrate"}>
+                            <MigrateScreen />
                         </Route>
                         <Route path={"/staking/unstake"}>
                             <UnstakeScreen />

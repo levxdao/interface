@@ -95,7 +95,7 @@ const MigrateModeSelect = ({ state }: { state: MigrateLPState }) => {
 
 const OhGeezLiquidity = ({ state }: { state: MigrateLPState }) => {
     const t = useTranslation();
-    const title = "OH-GEEZ/WETH" + t("liquidity");
+    const title = "OH-GEEZ/WETH " + t("liquidity");
     if (!state.mode) {
         return <Heading text={title} disabled={true} />;
     }
