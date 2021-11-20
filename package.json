@@ -7,8 +7,6 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "deploy": "bash ./scripts/deploy:web.sh",
-    "predeploy": "bash ./scripts/build:web.sh",
     "postinstall": "node scripts/hack.js"
   },
   "dependencies": {
