@@ -16,7 +16,8 @@ const FLAGS = {
     kr: require("../../../assets/flags/kr.png"),
     fr: require("../../../assets/flags/fr.png"),
     es: require("../../../assets/flags/es.png"),
-    jp: require("../../../assets/flags/jp.png")
+    jp: require("../../../assets/flags/jp.png"),
+    de: require("../../../assets/flags/de.png")
 };
 
 const ALCHEMY_URL = "https://dashboard.alchemyapi.io/signup?referral=429fb682-0d85-40ab-ad88-daf847cf7c63";
@@ -46,6 +47,7 @@ const WebFooter = ({ simple = false }) => {
                 <Flag name={"cn"} locale={"zh"} />
                 <Flag name={"jp"} locale={"jp"} />
                 <Flag name={"kr"} locale={"ko"} />
+                <Flag name={"de"} locale={"de"} />
             </FlexView>
         </View>
     );
