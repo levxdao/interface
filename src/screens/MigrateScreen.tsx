@@ -63,7 +63,8 @@ const Migrate = () => {
 };
 
 const OhGeezAmount = (_: { state: MigrateState }) => {
-    return <TokenSelect title={"Your OH-GEEZ amount"} symbol={"OH-GEEZ"} onChangeSymbol={() => {}} viewOnly={true} />;
+    const t = useTranslation();
+    return <TokenSelect title={t("my-balance")} symbol={"OH-GEEZ"} onChangeSymbol={() => {}} viewOnly={true} />;
 };
 
 const AmountInput = ({ state }: { state: MigrateState }) => {
