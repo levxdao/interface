@@ -106,6 +106,7 @@ const OhGeezLiquidity = ({ state }: { state: MigrateLPState }) => {
             emptyText={t("you-dont-have-liquidity")}
             Item={LPTokenItem}
             disabled={true}
+            viewOnly={true}
         />
     );
 };

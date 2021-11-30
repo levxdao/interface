@@ -8,6 +8,7 @@ export interface ExpandableProps {
     title: string;
     expanded: boolean;
     onExpand?: () => void;
+    viewOnly?: boolean;
     style?: ViewStyle;
     children?: ReactNode;
 }
@@ -16,7 +17,7 @@ const Expandable: FC<ExpandableProps> = props => {
     const t = useTranslation();
     const [expanded, setExpanded] = useState(true);
     const shouldExpand = props.expanded && expanded;
-    const buttonText = shouldExpand ? undefined : t("change");
+    const buttonText = props.viewOnly || shouldExpand ? undefined : t("change");
     const onPress = () => {
         setExpanded(true);
         props.onExpand?.();

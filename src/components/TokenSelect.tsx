@@ -29,9 +29,11 @@ export interface TokenSelectProps {
     onChangeSymbol: (symbol: string) => void;
     disabled?: (token: Token) => boolean;
     hidden?: (token: Token) => boolean;
+    viewOnly?: boolean;
     style?: ViewStyle;
 }
 
+// tslint:disable-next-line:max-func-body-length
 const TokenSelect: FC<TokenSelectProps> = props => {
     const { tokens, addCustomToken } = useContext(EthersContext);
     const [search, setSearch] = useState("");
@@ -55,11 +57,23 @@ const TokenSelect: FC<TokenSelectProps> = props => {
     useDelayedEffect(() => setQuery(search.trim().toLowerCase()), 300, [search]);
     return (
         <View style={props.style}>
-            <Expandable title={props.title} expanded={!props.symbol} onExpand={() => props.onChangeSymbol("")}>
+            <Expandable
+                title={props.title}
+                expanded={!props.symbol}
+                viewOnly={true}
+                onExpand={() => props.onChangeSymbol("")}>
                 <TokenSearch text={search} onChangeText={setSearch} tokens={tokens} onAddToken={onAddToken} />
                 <TokenList disabled={props.disabled} hidden={hidden} onSelectToken={onSelectToken} />
             </Expandable>
-            {token && <TokenItem token={token} selected={true} onSelectToken={onUnselectToken} selectable={true} />}
+            {token && (
+                <TokenItem
+                    token={token}
+                    selected={true}
+                    onSelectToken={onUnselectToken}
+                    selectable={true}
+                    viewOnly={props.viewOnly}
+                />
+            )}
         </View>
     );
 };
@@ -115,6 +129,7 @@ const TokenItem = (props: {
     onSelectToken: (token: Token) => void;
     disabled?: boolean;
     selectable?: boolean;
+    viewOnly?: boolean;
 }) => {
     const onPress = useCallback(() => {
         props.onSelectToken(props.token);
@@ -150,7 +165,7 @@ const TokenItem = (props: {
                         {IS_DESKTOP && <TokenSymbol token={props.token} disabled={props.disabled} />}
                     </FlexView>
                 </View>
-                {props.selected ? <CloseIcon /> : <SelectIcon />}
+                {props.selected ? !props.viewOnly && <CloseIcon /> : <SelectIcon />}
             </FlexView>
         </Selectable>
     );

@@ -22,12 +22,14 @@ export interface LPTokenSelectProps {
     emptyText: string;
     Item: FC<LPTokenItemProps>;
     disabled?: boolean;
+    viewOnly?: boolean;
     style?: ViewStyle;
 }
 
 export interface LPTokenItemProps {
     token: LPToken;
     selected: boolean;
+    viewOnly?: boolean;
     onSelectToken: (token: LPToken) => void;
 }
 
@@ -38,6 +40,7 @@ const LPTokenSelect: FC<LPTokenSelectProps> = props => {
             <Expandable
                 title={props.title}
                 expanded={!props.state.selectedLPToken}
+                viewOnly={props.viewOnly}
                 onExpand={() => props.state.setSelectedLPToken()}>
                 <LPTokenList state={props.state} emptyText={props.emptyText} Item={props.Item} />
             </Expandable>
@@ -45,6 +48,7 @@ const LPTokenSelect: FC<LPTokenSelectProps> = props => {
                 <props.Item
                     token={props.state.selectedLPToken}
                     selected={true}
+                    viewOnly={props.viewOnly}
                     onSelectToken={props.disabled ? () => {} : onUnselectToken}
                 />
             )}
@@ -114,7 +118,7 @@ export const LPTokenItem: FC<LPTokenItemProps> = props => {
                         {balance}
                     </Text>
                 </View>
-                {props.selected ? <CloseIcon /> : <SelectIcon />}
+                {props.selected ? !props.viewOnly && <CloseIcon /> : <SelectIcon />}
             </FlexView>
         </Selectable>
     );
