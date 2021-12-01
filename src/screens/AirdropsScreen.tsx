@@ -163,7 +163,7 @@ const ClaimButton = ({
     const onPress = async () => {
         onError({});
         try {
-            if (state.token === ETH) {
+            if (state.selectedAirdrop?.token === ETH.address) {
                 await state.onClaimETH();
             } else {
                 await state.onClaimLevx();
