@@ -25,7 +25,7 @@ import useAirdropsState, { AirdropsState } from "../hooks/useAirdropsState";
 import useLinker from "../hooks/useLinker";
 import useTranslation from "../hooks/useTranslation";
 import MetamaskError from "../types/MetamaskError";
-import { formatBalance } from "../utils";
+import { formatBalance, parseBalance } from "../utils";
 import Screen from "./Screen";
 
 const AirdropsScreen = () => {
@@ -71,12 +71,7 @@ const AmountInfo = ({ state }: { state: AirdropsState }) => {
                 disabled={disabled}
             />
             {snapshot && (
-                <Meta
-                    label={t("block")}
-                    text={String(snapshot)}
-                    url={"https://etherscan.io/block/" + snapshot}
-                    disabled={disabled}
-                />
+                <Meta label={t("block")} text={String(snapshot)} url={"https://etherscan.io/block/" + snapshot} />
             )}
             <Controls state={state} />
         </InfoBox>
@@ -99,6 +94,8 @@ const Controls = ({ state }: { state: AirdropsState }) => {
                     <View style={{ height: Spacing.tiny }} />
                     <ShareAirdropToTwitterButton state={state} />
                 </>
+            ) : !state.amount || parseBalance(state.amount).isZero() ? (
+                <NotEligibleButton />
             ) : state.selectedAirdrop.token === LEVX_TOKEN ? (
                 <ClaimButton state={state} onError={setError} />
             ) : (
@@ -111,6 +108,10 @@ const Controls = ({ state }: { state: AirdropsState }) => {
             {error.message && error.code !== 4001 && <ErrorMessage error={error} />}
         </View>
     );
+};
+const NotEligibleButton = ({}: {}) => {
+    const t = useTranslation();
+    return <Button title={t("not-eligible")} disabled={true} />;
 };
 
 const ClaimingButton = () => {
