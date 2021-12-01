@@ -11,7 +11,7 @@ import useMigratoooooor from "./useMigratoooooor";
 
 export type MigrateMode = "permit" | "approve";
 
-export const SLIPPAGE_TOLERANCE = new Percent("3", "1000"); // 0.3%
+export const SLIPPAGE_TOLERANCE = new Percent("5", "1000"); // 0.5%
 
 export interface MigrateLPState extends LPTokensState {
     mode?: MigrateMode;
