@@ -81,6 +81,20 @@ export const MigrateSubMenu = () => {
     );
 };
 
+export const AirdropsSubMenu = () => {
+    const t = useTranslation();
+    return (
+        <WebSubMenu
+            items={[
+                {
+                    title: t("airdrops"),
+                    path: "/airdrops"
+                }
+            ]}
+        />
+    );
+};
+
 export const StakingSubMenu = () => {
     const t = useTranslation();
     return (

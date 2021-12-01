@@ -4,6 +4,7 @@
     "swap": "Swap",
     "liquidity": "Liquidity",
     "migrate": "Migrate",
+    "airdrops": "Airdrops",
     "stake": "Stake",
     "farm": "Farm",
     "not-connected": "Not connected",
@@ -139,5 +140,16 @@
   "-add-": "ADD",
   "not-supported": "Not Supported",
   "no-ethereum-provider-found": "No ethereum provider found.",
-  "connect": "Connect"
+  "connect": "Connect",
+  "airdrops": "Airdrops",
+  "airdrops-desc": "Claim one of the airdrops that you are eligible. You can get the tokens as is or swap them to $LEVX.",
+  "list-of-airdrops": "List of airdrops",
+  "claim": "Claim",
+  "claimable-": "Claimable {{symbol}}",
+  "block": "Block",
+  "block-": "Block {{number}}",
+  "claiming": "Claiming...",
+  "share-airdrop-to-twitter": "Share this airdrop to Twitter",
+  "claim-as-levx": "Claim as LEVX",
+  "already-claimed": "Already Claimed"
 }

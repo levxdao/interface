@@ -3,6 +3,7 @@ import { useCallback, useContext } from "react";
 import { Percent, Router, TokenAmount } from "@sushiswap/sdk";
 import { signERC2612Permit } from "eth-permit";
 import { ethers } from "ethers";
+import { ALLOWED_SLIPPAGE, TTL } from "../constants";
 import { ROUTER, ZAP_IN, ZAP_OUT } from "../constants/contracts";
 import { EthersContext } from "../context/EthersContext";
 import LPToken from "../types/LPToken";
@@ -10,13 +11,11 @@ import Token from "../types/Token";
 import { convertToken, deduct, getContract, isETH, parseCurrencyAmount } from "../utils";
 import { logTransaction } from "../utils/analytics-utils";
 import useSDK from "./useSDK";
-import useSwapRouter from "./useSwapRouter";
 
 // tslint:disable-next-line:max-func-body-length
 const useZapper = () => {
     const { ethereum } = useContext(EthersContext);
     const { getPair, getTrade, calculateAmountOfLPTokenMinted } = useSDK();
-    const { allowedSlippage, ttl } = useSwapRouter();
     const zapSlippage = new Percent("3", "100"); // 3.0%
 
     const populateSwapData = async (
@@ -30,9 +29,9 @@ const useZapper = () => {
         if (!trade) throw new Error("Cannot find trade");
         const params = Router.swapCallParameters(trade, {
             feeOnTransfer: false,
-            allowedSlippage,
+            allowedSlippage: ALLOWED_SLIPPAGE,
             recipient: ZAP_IN,
-            ttl
+            ttl: TTL
         });
         const router = getContract("IUniswapV2Router02", ROUTER, signer);
         const tx = await router.populateTransaction[params.methodName](...params.args, { value: params.value });
@@ -107,7 +106,7 @@ const useZapper = () => {
             signer: ethers.Signer
         ) => {
             const contract = getContract("ZapOut", ZAP_OUT, signer);
-            const deadline = Math.floor(new Date().getTime() / 1000) + ttl;
+            const deadline = Math.floor(new Date().getTime() / 1000) + TTL;
             const permit = await signERC2612Permit(
                 ethereum,
                 lpToken.address,

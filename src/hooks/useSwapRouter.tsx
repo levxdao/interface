@@ -1,26 +1,22 @@
 import { useCallback } from "react";
 
-import { Percent, Router, Trade } from "@sushiswap/sdk";
+import { Router, Trade } from "@sushiswap/sdk";
 import { ethers } from "ethers";
+import { ALLOWED_SLIPPAGE, TTL } from "../constants";
 import { ROUTER } from "../constants/contracts";
 import Token from "../types/Token";
 import { deduct, getContract } from "../utils";
 import { logTransaction } from "../utils/analytics-utils";
 
-export const FEE = new Percent("3", "1000"); // 0.3%
-
 // tslint:disable-next-line:max-func-body-length
 const useSwapRouter = () => {
-    const allowedSlippage = new Percent("50", "10000"); // 0.05%
-    const ttl = 60 * 20;
-
     const swap = useCallback(async (trade: Trade, signer: ethers.Signer) => {
         if (trade) {
             const params = Router.swapCallParameters(trade, {
                 feeOnTransfer: false,
-                allowedSlippage,
+                allowedSlippage: ALLOWED_SLIPPAGE,
                 recipient: await signer.getAddress(),
-                ttl
+                ttl: TTL
             });
             const router = getContract("IUniswapV2Router02", ROUTER, signer);
             const gasLimit = await router.estimateGas[params.methodName](...params.args, {
@@ -51,14 +47,14 @@ const useSwapRouter = () => {
             signer: ethers.Signer
         ) => {
             const router = getContract("IUniswapV2Router02", ROUTER, signer);
-            const deadline = `0x${(Math.floor(new Date().getTime() / 1000) + ttl).toString(16)}`;
+            const deadline = `0x${(Math.floor(new Date().getTime() / 1000) + TTL).toString(16)}`;
             const args = [
                 fromToken.address,
                 toToken.address,
                 fromAmount,
                 toAmount,
-                deduct(fromAmount, allowedSlippage),
-                deduct(toAmount, allowedSlippage),
+                deduct(fromAmount, ALLOWED_SLIPPAGE),
+                deduct(toAmount, ALLOWED_SLIPPAGE),
                 await signer.getAddress(),
                 deadline
             ];
@@ -80,12 +76,12 @@ const useSwapRouter = () => {
             signer: ethers.Signer
         ) => {
             const router = getContract("IUniswapV2Router02", ROUTER, signer);
-            const deadline = `0x${(Math.floor(new Date().getTime() / 1000) + ttl).toString(16)}`;
+            const deadline = `0x${(Math.floor(new Date().getTime() / 1000) + TTL).toString(16)}`;
             const args = [
                 token.address,
                 liquidity,
-                deduct(amount, allowedSlippage),
-                deduct(amountETH, allowedSlippage),
+                deduct(amount, ALLOWED_SLIPPAGE),
+                deduct(amountETH, ALLOWED_SLIPPAGE),
                 await signer.getAddress(),
                 deadline
             ];
@@ -108,13 +104,13 @@ const useSwapRouter = () => {
             signer: ethers.Signer
         ) => {
             const router = getContract("IUniswapV2Router02", ROUTER, signer);
-            const deadline = `0x${(Math.floor(new Date().getTime() / 1000) + ttl).toString(16)}`;
+            const deadline = `0x${(Math.floor(new Date().getTime() / 1000) + TTL).toString(16)}`;
             const args = [
                 fromToken.address,
                 toToken.address,
                 liquidity,
-                deduct(fromAmount, allowedSlippage),
-                deduct(toAmount, allowedSlippage),
+                deduct(fromAmount, ALLOWED_SLIPPAGE),
+                deduct(toAmount, ALLOWED_SLIPPAGE),
                 await signer.getAddress(),
                 deadline
             ];
@@ -130,12 +126,12 @@ const useSwapRouter = () => {
     const addLiquidityETH = useCallback(
         async (token: Token, amount: ethers.BigNumber, amountETH: ethers.BigNumber, signer: ethers.Signer) => {
             const router = getContract("IUniswapV2Router02", ROUTER, signer);
-            const deadline = `0x${(Math.floor(new Date().getTime() / 1000) + ttl).toString(16)}`;
+            const deadline = `0x${(Math.floor(new Date().getTime() / 1000) + TTL).toString(16)}`;
             const args = [
                 token.address,
                 amount,
-                deduct(amount, allowedSlippage),
-                deduct(amountETH, allowedSlippage),
+                deduct(amount, ALLOWED_SLIPPAGE),
+                deduct(amountETH, ALLOWED_SLIPPAGE),
                 await signer.getAddress(),
                 deadline
             ];
@@ -156,8 +152,6 @@ const useSwapRouter = () => {
     };
 
     return {
-        allowedSlippage,
-        ttl,
         swap,
         addLiquidity,
         addLiquidityETH,

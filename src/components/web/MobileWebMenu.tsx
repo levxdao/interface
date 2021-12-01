@@ -36,6 +36,7 @@ const MobileWebMenu = ({ expanded, onCollapse }) => {
                         <Status />
                         <View style={{ height: Spacing.large }} />
                         <MobileWebMenuItem title={t("menu.home")} path={"/"} />
+                        <MobileWebMenuItem title={t("menu.airdrops")} path={"/airdrops"} />
                         <MobileWebMenuItem title={t("menu.migrate")} path={"/migrate"} />
                         <MobileWebMenuItem title={t("menu.swap")} path={"/swap"} />
                         <MobileWebMenuItem title={t("menu.liquidity")} path={"/liquidity"} />
