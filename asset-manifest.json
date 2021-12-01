@@ -50,6 +50,7 @@
     "fonts/MaterialIcons.ttf": "././fonts/MaterialIcons.ttf",
     "fonts/SimpleLineIcons.ttf": "././fonts/SimpleLineIcons.ttf",
     "favicon.png": "./favicon.png",
+    "images/banner.png": "./images/banner.png",
     "images/tokens/AMPL.png": "./images/tokens/AMPL.png",
     "images/tokens/BAND.png": "./images/tokens/BAND.png",
     "images/tokens/BASED.png": "./images/tokens/BASED.png",
