@@ -21,6 +21,7 @@ import TokenLogo from "./TokenLogo";
 import TokenSymbol from "./TokenSymbol";
 
 const AirdropSelect = ({ state }: { state: AirdropsState }) => {
+    console.log(airdrops);
     const t = useTranslation();
     const { tokens } = useContext(EthersContext);
     const token = tokens.find(tk => tk.address === state.selectedAirdrop?.token);

@@ -19,7 +19,7 @@ import { AirdropsSubMenu } from "../components/web/WebSubMenu";
 import airdrops from "../constants/airdrops";
 import { LEVX_TOKEN } from "../constants/contracts";
 import { Spacing } from "../constants/dimension";
-import { ETH } from "../constants/tokens";
+import { ETH, LEVX } from "../constants/tokens";
 import { EthersContext } from "../context/EthersContext";
 import useAirdropsState, { AirdropsState } from "../hooks/useAirdropsState";
 import useLinker from "../hooks/useLinker";
@@ -89,21 +89,17 @@ const Controls = ({ state }: { state: AirdropsState }) => {
             ) : state.claimEvent ? (
                 <ClaimedButton />
             ) : state.claiming ? (
-                <>
-                    <ClaimingButton />
-                    <View style={{ height: Spacing.tiny }} />
-                    <ShareAirdropToTwitterButton state={state} />
-                </>
+                <ClaimingButton />
             ) : !state.amount || parseBalance(state.amount).isZero() ? (
                 <NotEligibleButton />
-            ) : state.selectedAirdrop.token === LEVX_TOKEN ? (
-                <ClaimButton state={state} onError={setError} />
-            ) : (
+            ) : state.selectedAirdrop.token === ETH.address ? (
                 <>
                     <ClaimButton state={state} onError={setError} outline={true} />
                     <View style={{ height: Spacing.tiny }} />
                     <ClaimAsLevxButton state={state} onError={setError} />
                 </>
+            ) : (
+                <ClaimButton state={state} onError={setError} />
             )}
             {error.message && error.code !== 4001 && <ErrorMessage error={error} />}
         </View>
@@ -165,8 +161,10 @@ const ClaimButton = ({
         try {
             if (state.selectedAirdrop?.token === ETH.address) {
                 await state.onClaimETH();
-            } else {
+            } else if (state.selectedAirdrop?.token === LEVX.address) {
                 await state.onClaimLevx();
+            } else {
+                await state.onClaimERC20();
             }
         } catch (e) {
             onError(e);

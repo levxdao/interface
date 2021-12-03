@@ -10,7 +10,7 @@ import { EthersContext } from "../context/EthersContext";
 import Airdrop from "../types/Airdrop";
 import TokenWithValue from "../types/TokenWithValue";
 import { convertAmount, convertToken, deduct, parseBalance } from "../utils";
-import { getETHAirdropContract, getLevxAirdropContract } from "../utils/getAirdropContract";
+import { getERC20AirdropsContract, getETHAirdropContract, getLevxAirdropContract } from "../utils/getAirdropContract";
 
 export interface AirdropsState {
     selectedAirdrop?: Airdrop;
@@ -20,6 +20,7 @@ export interface AirdropsState {
     loading: boolean;
     claimEvent?: Event;
     onClaimLevx: () => Promise<void>;
+    onClaimERC20: () => Promise<void>;
     onClaimETH: () => Promise<void>;
     onClaimAsLevx: () => Promise<void>;
     claiming: boolean;
@@ -39,12 +40,22 @@ const useAirdropsState: () => AirdropsState = () => {
                 setLoading(true);
                 try {
                     let contract;
+                    let filter;
                     if (selectedAirdrop.token === ETH.address) {
                         contract = getETHAirdropContract(provider);
-                    } else {
+                        filter = contract.filters.Claim(selectedAirdrop.merkleRoot, address);
+                    } else if (selectedAirdrop.token === LEVX.address) {
                         contract = getLevxAirdropContract(provider);
+                        filter = contract.filters.Claim(selectedAirdrop.merkleRoot, address);
+                    } else {
+                        contract = getERC20AirdropsContract(provider);
+                        filter = contract.filters.Claim(
+                            selectedAirdrop.token,
+                            selectedAirdrop.merkleRoot,
+                            null,
+                            address
+                        );
                     }
-                    const filter = contract.filters.Claim(selectedAirdrop.merkleRoot, address);
                     const events = await contract.queryFilter(filter, ethAirdropReceipt.blockNumber);
                     if (events.length > 0) {
                         setClaimEvent(events[0]);
@@ -65,6 +76,23 @@ const useAirdropsState: () => AirdropsState = () => {
                 const proof = getMerkleProof(selectedAirdrop.entries, entry);
                 const contract = getLevxAirdropContract(signer);
                 const tx = await contract.claim(root, proof, parseBalance(amount));
+                await tx.wait();
+            } finally {
+                setClaiming(false);
+                await updateTokens();
+            }
+        }
+    };
+
+    const onClaimERC20 = async () => {
+        const entry = selectedAirdrop?.entries.find(e => e[0].toLowerCase() === address?.toLowerCase());
+        if (selectedAirdrop && signer && entry && amount && address) {
+            setClaiming(true);
+            try {
+                const root = getMerkleRoot(selectedAirdrop.entries);
+                const proof = getMerkleProof(selectedAirdrop.entries, entry);
+                const contract = getERC20AirdropsContract(signer);
+                const tx = await contract.claim(selectedAirdrop.token, root, proof, parseBalance(amount));
                 await tx.wait();
             } finally {
                 setClaiming(false);
@@ -129,6 +157,7 @@ const useAirdropsState: () => AirdropsState = () => {
         loading,
         claimEvent,
         onClaimLevx,
+        onClaimERC20,
         onClaimETH,
         onClaimAsLevx,
         claiming
