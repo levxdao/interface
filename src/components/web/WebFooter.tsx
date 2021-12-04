@@ -19,26 +19,10 @@ const FLAGS = {
     jp: require("../../../assets/flags/jp.png")
 };
 
-const ALCHEMY_URL = "https://dashboard.alchemyapi.io/signup?referral=429fb682-0d85-40ab-ad88-daf847cf7c63";
-
 const WebFooter = ({ simple = false }) => {
-    const onPressAlchemy = useLinker(ALCHEMY_URL, "", "_blank");
     return (
         <View style={{ width: "100%", padding: Spacing.normal, alignItems: "center" }}>
-            {!simple && (
-                <>
-                    <SocialIcons />
-                    <TouchableHighlight onPress={onPressAlchemy}>
-                        <Image
-                            source={require("../../../assets/images/alchemy.png")}
-                            style={{ width: 188, height: 40, marginTop: Spacing.tiny }}
-                        />
-                    </TouchableHighlight>
-                </>
-            )}
-            <Text note={true} style={{ marginTop: Spacing.tiny }}>
-                Built by the Dicktator of LevX DAO (v{Constants.manifest.version})
-            </Text>
+            {!simple && <SocialIcons />}
             <FlexView style={{ marginTop: Spacing.small }}>
                 <Flag name={"us"} locale={"en"} />
                 <Flag name={"es"} locale={"es"} />
@@ -47,6 +31,9 @@ const WebFooter = ({ simple = false }) => {
                 <Flag name={"jp"} locale={"jp"} />
                 <Flag name={"kr"} locale={"ko"} />
             </FlexView>
+            <Text note={true} style={{ marginTop: Spacing.tiny }}>
+                Built by the Dicktator of LevX DAO (v{Constants.manifest.version})
+            </Text>
         </View>
     );
 };

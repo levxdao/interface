@@ -27,7 +27,7 @@ import TokenInput from "../components/TokenInput";
 import TokenSelect from "../components/TokenSelect";
 import UnsupportedButton from "../components/UnsupportedButton";
 import WebFooter from "../components/web/WebFooter";
-import { LiquiditySubMenu } from "../components/web/WebSubMenu";
+import { AmmSubMenu } from "../components/web/WebSubMenu";
 import { ROUTER, ZAP_IN } from "../constants/contracts";
 import { Spacing } from "../constants/dimension";
 import Fraction from "../constants/Fraction";
@@ -55,7 +55,7 @@ const LiquidityScreen = () => {
                 </Content>
                 {Platform.OS === "web" && <WebFooter />}
             </Container>
-            <LiquiditySubMenu />
+            <AmmSubMenu />
         </Screen>
     );
 };

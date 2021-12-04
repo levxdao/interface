@@ -31,7 +31,7 @@ export const HomeSubMenu = () => {
     );
 };
 
-export const SwapSubMenu = () => {
+export const AmmSubMenu = () => {
     const t = useTranslation();
     return (
         <WebSubMenu
@@ -39,17 +39,7 @@ export const SwapSubMenu = () => {
                 {
                     title: t("new-order"),
                     path: "/swap"
-                }
-            ]}
-        />
-    );
-};
-
-export const LiquiditySubMenu = () => {
-    const t = useTranslation();
-    return (
-        <WebSubMenu
-            items={[
+                },
                 {
                     title: t("add-liquidity"),
                     path: "/liquidity"

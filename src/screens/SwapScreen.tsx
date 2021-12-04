@@ -24,7 +24,7 @@ import TokenInput from "../components/TokenInput";
 import TokenSelect from "../components/TokenSelect";
 import UnsupportedButton from "../components/UnsupportedButton";
 import WebFooter from "../components/web/WebFooter";
-import { SwapSubMenu } from "../components/web/WebSubMenu";
+import { AmmSubMenu } from "../components/web/WebSubMenu";
 import { ROUTER } from "../constants/contracts";
 import { IS_DESKTOP, Spacing } from "../constants/dimension";
 import { EthersContext } from "../context/EthersContext";
@@ -49,7 +49,7 @@ const SwapScreen = () => {
                 </Content>
                 {Platform.OS === "web" && <WebFooter />}
             </Container>
-            <SwapSubMenu />
+            <AmmSubMenu />
         </Screen>
     );
 };

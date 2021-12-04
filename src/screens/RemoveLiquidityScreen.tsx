@@ -28,12 +28,12 @@ import TokenInput from "../components/TokenInput";
 import TokenLogo from "../components/TokenLogo";
 import TokenSymbol from "../components/TokenSymbol";
 import WebFooter from "../components/web/WebFooter";
-import { LiquiditySubMenu } from "../components/web/WebSubMenu";
+import { AmmSubMenu } from "../components/web/WebSubMenu";
+import { FEE } from "../constants";
 import { ROUTER } from "../constants/contracts";
 import { IS_DESKTOP, Spacing } from "../constants/dimension";
 import { EthersContext } from "../context/EthersContext";
 import useRemoveLiquidityState, { RemoveLiquidityState } from "../hooks/useRemoveLiquidityState";
-import { FEE } from "../hooks/useSwapRouter";
 import useTranslation from "../hooks/useTranslation";
 import LPToken from "../types/LPToken";
 import MetamaskError from "../types/MetamaskError";
@@ -54,7 +54,7 @@ const RemoveLiquidityScreen = () => {
                 </Content>
                 {Platform.OS === "web" && <WebFooter />}
             </Container>
-            <LiquiditySubMenu />
+            <AmmSubMenu />
         </Screen>
     );
 };

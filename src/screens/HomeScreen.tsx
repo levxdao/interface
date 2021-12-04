@@ -52,7 +52,7 @@ const HomeScreen = () => {
             <Container>
                 <BackgroundImage />
                 <Content style={{ paddingBottom: Spacing.large }}>
-                    <Title text={t("total-value")} style={{ flex: 1, marginTop: Spacing.small }} />
+                    <Title text={t("total-value")} style={{ flex: 1 }} />
                     <Title
                         text={loading ? t("fetching") : formatUSD(totalValue, 4)}
                         fontWeight={"light"}
