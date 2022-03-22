@@ -1,3 +1,4 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import React, { lazy, Suspense, useContext, useEffect, useState } from "react";
 import { Platform, View } from "react-native";
 import { Icon } from "react-native-elements";
@@ -19,7 +20,8 @@ const HarvestScreen = lazy(() => import("./HarvestScreen"));
 const LiquidityScreen = lazy(() => import("./LiquidityScreen"));
 const MigrateScreen = lazy(() => import("./MigrateScreen"));
 const MigrateLPScreen = lazy(() => import("./MigrateLPScreen"));
-const ClaimScreen = lazy(() => import("./AirdropsScreen"));
+const LevxDistributionScreen = lazy(() => import("./LevxDistributionScreen"));
+const AirdropsScreen = lazy(() => import("./AirdropsScreen"));
 const RemoveLiquidityScreen = lazy(() => import("./RemoveLiquidityScreen"));
 const StakeScreen = lazy(() => import("./StakeScreen"));
 const UnstakeScreen = lazy(() => import("./UnstakeScreen"));
@@ -34,6 +36,7 @@ export const Screens = () => {
 
 // tslint:disable-next-line:max-func-body-length
 const WebScreens = () => {
+    const { user } = useAuth0();
     const { address } = useContext(EthersContext);
     const [menuExpanded, setMenuExpanded] = useState(false);
     const { background } = useColors();
@@ -69,8 +72,11 @@ const WebScreens = () => {
                         <Route path={"/migrate"}>
                             <MigrateScreen />
                         </Route>
+                        <Route path={"/airdrops/levx"}>
+                            <LevxDistributionScreen />
+                        </Route>
                         <Route path={"/airdrops"}>
-                            <ClaimScreen />
+                            <AirdropsScreen />
                         </Route>
                         <Route path={"/staking/unstake"}>
                             <UnstakeScreen />

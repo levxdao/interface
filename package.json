@@ -10,8 +10,9 @@
     "postinstall": "node scripts/hack.js"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^1.9.0",
     "@codler/react-native-keyboard-aware-scroll-view": "^1.0.1",
-    "@levxdao/airdrop": "^1.1.0",
+    "@levxdao/airdrop": "^1.2.0",
     "@levxdao/merkle-tree-generator": "^1.0.0",
     "@react-native-community/async-storage": "~1.12.0",
     "@react-native-community/masked-view": "0.1.10",

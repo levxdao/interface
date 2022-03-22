@@ -79,6 +79,10 @@ export const AirdropsSubMenu = () => {
                 {
                     title: t("airdrops"),
                     path: "/airdrops"
+                },
+                {
+                    title: t("levx-distribution"),
+                    path: "/airdrops/levx"
                 }
             ]}
         />

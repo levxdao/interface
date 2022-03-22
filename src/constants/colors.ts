@@ -7,7 +7,8 @@ export const Colors = {
         green: "#32CD32",
         red: "#FF0000",
         twitter: "#1da1f2",
-        facebook: "#3B5998"
+        facebook: "#3B5998",
+        discord: "#5865F2"
     },
     light: {
         accent: "#ed1c27",
