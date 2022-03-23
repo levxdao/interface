@@ -149,7 +149,7 @@ const TweetButton = ({ amount, setTweeted }) => {
             "https://twitter.com/intent/tweet?text=" +
                 encodeURIComponent(t("tweet-content", { amount })) +
                 "&url=" +
-                encodeURIComponent("https://twitter.com/LevXDAOhGeez/status/1506401475513053187"),
+                encodeURIComponent("https://twitter.com/LevxApp/status/1505646396912795653"),
             "_blank"
         );
         setTweeted(true);
