@@ -1,9 +1,9 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import React, { lazy, Suspense, useContext, useEffect, useState } from "react";
 import { Platform, View } from "react-native";
 import { Icon } from "react-native-elements";
 import { HashRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 
+import { useAuth0 } from "@auth0/auth0-react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { DefaultTheme, NavigationContainer, Theme } from "@react-navigation/native";
 import useAsyncEffect from "use-async-effect";
@@ -36,7 +36,6 @@ export const Screens = () => {
 
 // tslint:disable-next-line:max-func-body-length
 const WebScreens = () => {
-    const { user } = useAuth0();
     const { address } = useContext(EthersContext);
     const [menuExpanded, setMenuExpanded] = useState(false);
     const { background } = useColors();

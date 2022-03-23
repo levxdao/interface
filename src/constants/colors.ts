@@ -3,7 +3,7 @@ export const Colors = {
         white: "#ffffff",
         transparent: "#ffffff00",
         primary: "#ed1c27",
-        secondary: "#27B0E6",
+        secondary: "#024fa2",
         green: "#32CD32",
         red: "#FF0000",
         twitter: "#1da1f2",

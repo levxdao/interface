@@ -2211,10 +2211,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^3.0.0"
 
-"@levxdao/airdrop@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@levxdao/airdrop/-/airdrop-1.2.0.tgz#42af1cfe4f1f1eb107200581288a7b96105c60ca"
-  integrity sha512-/GyoiiTNIcqwyKOVD/mN7B6Cwp/oy2F929FcUHK3lLVpuX2HhuCwerSuuFKKcO/5cJ7m/S98PJJ7pY8iJvz4Tw==
+"@levxdao/airdrop@^1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@levxdao/airdrop/-/airdrop-1.3.1.tgz#1c65786ceb69c09204b85339d4dbcd5dfd2b51ed"
+  integrity sha512-qUgkypSAtfPV7nlTLtuVcdwK6UNRzxkBtBYyF8zoIwPIvedtlOv96C+OnkZ+IR/likBIgOHeZ1u/A+lHxkJrow==
   dependencies:
     "@openzeppelin/contracts" "^4.3.2"
 
