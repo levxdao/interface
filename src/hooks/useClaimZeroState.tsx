@@ -23,6 +23,7 @@ export interface ClaimZeroState {
 }
 
 export interface Auth {
+    user: Record<string, any>;
     id: string;
     address: string;
     signature: Signature;
@@ -45,6 +46,7 @@ const useClaimZeroState: () => ClaimZeroState = () => {
     const [claiming, setClaiming] = useState(false);
     const [lastUpdated, setLastUpdated] = useState(0);
 
+    // tslint:disable-next-line:max-func-body-length
     useAsyncEffect(async () => {
         if (isAuthenticated && signer) {
             if (window.location.search) {
@@ -60,9 +62,15 @@ const useClaimZeroState: () => ClaimZeroState = () => {
                 const resp = await fetch(API_SERVER + `/zero/auth?access_token=${accessToken}&address=${account}`);
                 if (resp.status === 200) {
                     const data = await resp.json();
-                    // tslint:disable-next-line:no-console
-                    console.log(data);
                     setAuth(data);
+                    if (data) {
+                        // tslint:disable-next-line:no-console
+                        console.log("id: " + data.id);
+                        // tslint:disable-next-line:no-console
+                        console.log("address: " + data.address);
+                        // tslint:disable-next-line:no-console
+                        console.log("user: " + JSON.stringify(data.user));
+                    }
                     // Load events
                     const contract = getContract(signer);
                     const claim = contract.filters.Claim(data.id);
