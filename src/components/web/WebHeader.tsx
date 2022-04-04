@@ -70,7 +70,7 @@ const Menu = () => {
             }}>
             <MenuItem title={t("menu.home")} path={"/"} />
             <MenuItem title={t("menu.airdrops")} path={"/airdrops"} />
-            <MenuItem title={t("menu.zero")} path={"/zero/claim"} />
+            <MenuItem title={t("menu.zero")} path={"/zero"} />
             <MenuItem title={t("menu.amm")} path={"/swap"} />
             <MenuItem title={t("menu.migrate")} path={"/migrate"} />
             {/*<MenuItem title={t("menu.stake")} path={"/staking"} />*/}

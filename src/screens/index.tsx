@@ -81,6 +81,9 @@ const WebScreens = () => {
                         <Route path={"/zero/claim"}>
                             <ClaimZeroScreen />
                         </Route>
+                        <Route path={"/zero"} exact={true}>
+                            <Redirect to={"/zero/claim"} />
+                        </Route>
                         <Route path={"/staking/unstake"}>
                             <UnstakeScreen />
                         </Route>
