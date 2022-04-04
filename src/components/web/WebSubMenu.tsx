@@ -89,6 +89,20 @@ export const AirdropsSubMenu = () => {
     );
 };
 
+export const ZeroSubMenu = () => {
+    const t = useTranslation();
+    return (
+        <WebSubMenu
+            items={[
+                {
+                    title: t("claim-zero"),
+                    path: "/zero/claim"
+                }
+            ]}
+        />
+    );
+};
+
 export const StakingSubMenu = () => {
     const t = useTranslation();
     return (

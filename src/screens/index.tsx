@@ -22,6 +22,7 @@ const MigrateScreen = lazy(() => import("./MigrateScreen"));
 const MigrateLPScreen = lazy(() => import("./MigrateLPScreen"));
 const LevxDistributionScreen = lazy(() => import("./LevxDistributionScreen"));
 const AirdropsScreen = lazy(() => import("./AirdropsScreen"));
+const ClaimZeroScreen = lazy(() => import("./ClaimZeroScreen"));
 const RemoveLiquidityScreen = lazy(() => import("./RemoveLiquidityScreen"));
 const StakeScreen = lazy(() => import("./StakeScreen"));
 const UnstakeScreen = lazy(() => import("./UnstakeScreen"));
@@ -76,6 +77,9 @@ const WebScreens = () => {
                         </Route>
                         <Route path={"/airdrops"}>
                             <AirdropsScreen />
+                        </Route>
+                        <Route path={"/zero/claim"}>
+                            <ClaimZeroScreen />
                         </Route>
                         <Route path={"/staking/unstake"}>
                             <UnstakeScreen />
