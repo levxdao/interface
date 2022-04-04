@@ -60,6 +60,8 @@ const useClaimZeroState: () => ClaimZeroState = () => {
                 const resp = await fetch(API_SERVER + `/zero/auth?access_token=${accessToken}&address=${account}`);
                 if (resp.status === 200) {
                     const data = await resp.json();
+                    // tslint:disable-next-line:no-console
+                    console.log(data);
                     setAuth(data);
                     // Load events
                     const contract = getContract(signer);
