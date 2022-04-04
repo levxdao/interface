@@ -60,7 +60,27 @@ const LoginInfo = ({ state }: { state: ClaimZeroState }) => {
                 buttonText={t("sign-out")}
                 onPressButton={state.onLogout}
             />
-            {state.authenticating ? <Loading /> : <ClaimInfo state={state} />}
+            {state.authenticating ? (
+                <Loading />
+            ) : state.claimEvent ? (
+                <Claimed state={state} />
+            ) : (
+                <ClaimInfo state={state} />
+            )}
+        </View>
+    );
+};
+
+const Claimed = ({ state }: { state: ClaimZeroState }) => {
+    const t = useTranslation();
+    const { primary } = useColors();
+    const onPress = useLinker("https://etherscan.io/tx/" + state.claimEvent?.transactionHash, "", "_blank");
+    return (
+        <View>
+            <Text caption={true} style={{ marginBottom: Spacing.small }}>
+                {t("you-claimed-zero")}
+            </Text>
+            <Button type={"outline"} color={primary} title={t("view-tx")} onPress={onPress} />
         </View>
     );
 };

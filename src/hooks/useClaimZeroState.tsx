@@ -4,7 +4,7 @@ import { useAuth0, User } from "@auth0/auth0-react";
 import { abi } from "@levxdao/zero-money/artifacts/contracts/ZeroMoney.sol/ZeroMoney.json";
 import { address, receipt } from "@levxdao/zero-money/deployments/mainnet/ZeroMoney.json";
 import { ZeroMoney } from "@levxdao/zero-money/typechain/ZeroMoney";
-import { Contract, providers } from "ethers";
+import { Contract, Event, providers } from "ethers";
 import useAsyncEffect from "use-async-effect";
 import { API_SERVER } from "../constants";
 import { EthersContext } from "../context/EthersContext";
@@ -15,7 +15,7 @@ export interface ClaimZeroState {
     user?: User;
     auth?: Auth;
     error?: string;
-    claimed: boolean;
+    claimEvent?: Event;
     onLogin: () => void;
     onLogout: () => void;
     onClaim: () => void;
@@ -41,7 +41,7 @@ const useClaimZeroState: () => ClaimZeroState = () => {
     const [authenticating, setAuthenticating] = useState(false);
     const [auth, setAuth] = useState<Auth>();
     const [error, setError] = useState("");
-    const [claimed, setClaimed] = useState(false);
+    const [claimEvent, setClaimEvent] = useState<Event>();
     const [claiming, setClaiming] = useState(false);
     const [lastUpdated, setLastUpdated] = useState(0);
 
@@ -53,7 +53,7 @@ const useClaimZeroState: () => ClaimZeroState = () => {
             setAuth(undefined);
             setAuthenticating(true);
             setError("");
-            setClaimed(false);
+            setClaimEvent(undefined);
             try {
                 const accessToken = await getAccessTokenSilently({ scope: "openid profile email" });
                 const account = await signer.getAddress();
@@ -66,7 +66,7 @@ const useClaimZeroState: () => ClaimZeroState = () => {
                     const claim = contract.filters.Claim(data.id);
                     const events = await contract.queryFilter(claim, receipt.blockNumber);
                     if (events.length > 0) {
-                        setClaimed(true);
+                        setClaimEvent(events[0]);
                     }
                 } else {
                     const data = await resp.json();
@@ -106,7 +106,7 @@ const useClaimZeroState: () => ClaimZeroState = () => {
         user,
         auth,
         error,
-        claimed,
+        claimEvent,
         onLogin,
         onLogout,
         onClaim,
