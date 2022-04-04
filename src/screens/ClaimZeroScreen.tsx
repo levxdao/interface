@@ -87,12 +87,24 @@ const Claimed = ({ state }: { state: ClaimZeroState }) => {
 
 const ClaimInfo = ({ state }: { state: ClaimZeroState }) => {
     const t = useTranslation();
+    const signedInUsingDiscord = state.auth && !state.auth.user.sub.startsWith("twitter|");
     return (
         <View>
-            <Text caption={true} light={true}>
-                {t("you-can-receive")}
-            </Text>
-            {state.auth ? <Eligible state={state} /> : <NotEligible state={state} />}
+            {signedInUsingDiscord ? (
+                <>
+                    <Text light={true} style={{ marginBottom: Spacing.small }}>
+                        {t("sign-in-with-twitter-instead")}
+                    </Text>
+                    <SignInWithTwitterButton state={state} />
+                </>
+            ) : (
+                <>
+                    <Text caption={true} light={true}>
+                        {t("you-can-receive")}
+                    </Text>
+                    {state.auth ? <Eligible state={state} /> : <NotEligible state={state} />}
+                </>
+            )}
         </View>
     );
 };
@@ -175,19 +187,26 @@ const NotEligible = ({ state }: { state: ClaimZeroState }) => {
 
 const SignInButtons = ({ state }: { state: ClaimZeroState }) => {
     const t = useTranslation();
-    const { twitter } = useColors();
     return (
         <View>
             <Heading text={t("sign-in-with-twitter")} />
-            <Button
-                title={t("sign-in-with-twitter")}
-                color={twitter}
-                icon={{ type: "material-community", name: "twitter", color: "white", size: 20 }}
-                style={{ marginBottom: Spacing.normal }}
-                onPress={() => state.onLogin()}
-            />
+            <SignInWithTwitterButton state={state} />
             <TweetEmbed tweetId="1510041941203103746" />
         </View>
+    );
+};
+
+const SignInWithTwitterButton = ({ state }: { state: ClaimZeroState }) => {
+    const t = useTranslation();
+    const { twitter } = useColors();
+    return (
+        <Button
+            title={t("sign-in-with-twitter")}
+            color={twitter}
+            icon={{ type: "material-community", name: "twitter", color: "white", size: 20 }}
+            style={{ marginBottom: Spacing.normal }}
+            onPress={() => state.onLogin()}
+        />
     );
 };
 

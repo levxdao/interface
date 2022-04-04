@@ -178,6 +178,7 @@
   "claim-zero": "Claim ZERO",
   "claim-zero-desc": "Claim 1 ZERO with near-zero effort.",
   "claim-zero-not-eligible": "You're not eligible for ZERO claim.",
+  "sign-in-with-twitter-instead": "You're signed in using discord. Sign in with twitter instead.",
   "you-claimed-zero": "Successfully claimed 1 ZERO",
   "view-tx": "View Transaction",
   "follow-like-rt-tweet": "Follow, Like & RT the tweet",
