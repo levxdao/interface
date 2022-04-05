@@ -82,6 +82,8 @@ const useClaimZeroState: () => ClaimZeroState = () => {
                     const data = await resp.json();
                     setError(data.errors?.[0]?.message || "");
                 }
+            } catch {
+                setError("Server error. Try refreshing this page 1-2 times.");
             } finally {
                 setAuthenticating(false);
             }

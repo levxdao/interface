@@ -100,7 +100,7 @@ const ClaimInfo = ({ state }: { state: ClaimZeroState }) => {
             ) : (
                 <>
                     <Text caption={true} light={true}>
-                        {t("you-can-receive")}
+                        {state.auth ? t("you-can-receive") : t("claim-zero-not-eligible")}
                     </Text>
                     {state.auth ? <Eligible state={state} /> : <NotEligible state={state} />}
                 </>
@@ -164,8 +164,8 @@ const NotEligible = ({ state }: { state: ClaimZeroState }) => {
     return (
         <View>
             <AmountMeta amount={"0"} suffix={"LEVX"} />
-            <Text light={true} style={{ marginTop: Spacing.small }}>
-                {t("claim-zero-not-eligible")} {state.error}
+            <Text light={true} style={{ color: "red", marginTop: Spacing.small }}>
+                {state.error}
             </Text>
             <Button
                 icon={{ type: "material-community", name: "twitter", color: "white", size: 20 }}
