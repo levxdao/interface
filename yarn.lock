@@ -2211,12 +2211,13 @@
     "@types/yargs" "^15.0.0"
     chalk "^3.0.0"
 
-"@levxdao/airdrop@^1.3.1":
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/@levxdao/airdrop/-/airdrop-1.3.1.tgz#1c65786ceb69c09204b85339d4dbcd5dfd2b51ed"
-  integrity sha512-qUgkypSAtfPV7nlTLtuVcdwK6UNRzxkBtBYyF8zoIwPIvedtlOv96C+OnkZ+IR/likBIgOHeZ1u/A+lHxkJrow==
+"@levxdao/airdrop@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@levxdao/airdrop/-/airdrop-1.4.0.tgz#aae94c727270959d0dcfe19510a2877da9b20fb3"
+  integrity sha512-ThCJuTF54nZg3WLrPXwjXrMMZcxC4FFWQCZ9gzb3Nhx8pojbehSzBxQ2Gy3Qqa6zi7LXWjC/gWzf/tQmcdtgpQ==
   dependencies:
     "@openzeppelin/contracts" "^4.3.2"
+    "@shoyunft/contracts" "^1.1.2"
 
 "@levxdao/merkle-tree-generator@^1.0.0":
   version "1.0.0"
@@ -2578,7 +2579,7 @@
     debug "^3.1.0"
     hosted-git-info "^2.6.0"
 
-"@shoyunft/contracts@^1.0.0-beta.3":
+"@shoyunft/contracts@^1.0.0-beta.3", "@shoyunft/contracts@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@shoyunft/contracts/-/contracts-1.1.2.tgz#1618275539fb307873b0f63899fb9cce8a763746"
   integrity sha512-9AzwC9tL2VqyJpSiQkSIXeJwp3okkc1uI2U2p4SFciBYr498d1I4gRZajnqRFO9wa0tBBuQrHcLstuwfrPA9zg==

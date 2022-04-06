@@ -150,6 +150,7 @@
   "sign-in-with-twitter-or-discord": "Sign In with Twitter or Discord",
   "sign-in-with-twitter": "Sign in with Twitter",
   "sign-in-with-discord": "Sign in with Discord",
+  "sign-in-with-ethereum": "Sign in with Ethereum (Employees Only)",
   "sign-out": "Sign out",
   "you-can-receive": "You can receive",
   "unfortunately-not-eligible": "Unfortunately, you're not eligible. Check the tweet for more information or come to the discord for ranting.",
@@ -183,5 +184,10 @@
   "view-tx": "View Transaction",
   "follow-like-rt-tweet": "Follow, Like & RT the tweet",
   "tweet-about-zero-money": "Congrats! Before start claiming, tweet about Zero Money clicking the button below.",
-  "tweet-zero-money-content": "I received 1 $ZERO token from @thezeromoney. $ZERO is a super inflationary token with (-3,-3) tokenomics that no one would ever want to get.\n\nDo you feel interested in this? Then you're a crazy person \uD83E\uDD23\n"
+  "tweet-zero-money-content": "I received 1 $ZERO token from @thezeromoney. $ZERO is a super inflationary token with (-3,-3) tokenomics that no one would ever want to get.\n\nDo you feel interested in this? Then you're a crazy person \uD83E\uDD23\n",
+  "levx-payouts": "LEVX Payout",
+  "levx-payouts-desc": "LEVX Payout works in a trustless manner.",
+  "claim-payout": "Claim",
+  "claim-payout-desc": "Your full amount of payout is {{full}} LEVX and you've claimed {{claimed}} LEVX so far. The full streaming ends at {{endsAt}}",
+  "no-payout": "You don't have any ongoing LEVX payout."
 }
