@@ -189,5 +189,7 @@
   "levx-payouts-desc": "LEVX Payout works in a trustless manner.",
   "claim-payout": "Claim",
   "claim-payout-desc": "Your full amount of payout is {{full}} LEVX and you've claimed {{claimed}} LEVX so far. The full streaming ends at {{endsAt}}",
-  "no-payout": "You don't have any ongoing LEVX payout."
+  "no-payout": "You don't have any ongoing LEVX payout.",
+  "withdraw-zero-dividend": "Withdraw ZERO Dividend",
+  "withdraw-zero-dividend-desc": "Whenever someone transfers ZERO to another address, same amount is distributed to all ZERO holders as a dividend."
 }

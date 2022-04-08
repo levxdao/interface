@@ -97,6 +97,10 @@ export const ZeroSubMenu = () => {
                 {
                     title: t("claim-zero"),
                     path: "/zero/claim"
+                },
+                {
+                    title: t("withdraw-zero-dividend"),
+                    path: "/zero/withdraw"
                 }
             ]}
         />

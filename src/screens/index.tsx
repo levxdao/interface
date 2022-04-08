@@ -24,6 +24,7 @@ const LevxDistributionScreen = lazy(() => import("./LevxDistributionScreen"));
 const LevxPayoutScreen = lazy(() => import("./LevxPayoutsScreen"));
 const AirdropsScreen = lazy(() => import("./AirdropsScreen"));
 const ClaimZeroScreen = lazy(() => import("./ClaimZeroScreen"));
+const WithdrawZeroDividendScreen = lazy(() => import("./WithdrawZeroDividendScreen"));
 const RemoveLiquidityScreen = lazy(() => import("./RemoveLiquidityScreen"));
 const StakeScreen = lazy(() => import("./StakeScreen"));
 const UnstakeScreen = lazy(() => import("./UnstakeScreen"));
@@ -84,6 +85,9 @@ const WebScreens = () => {
                         </Route>
                         <Route path={"/zero/claim"}>
                             <ClaimZeroScreen />
+                        </Route>
+                        <Route path={"/zero/withdraw"}>
+                            <WithdrawZeroDividendScreen />
                         </Route>
                         <Route path={"/zero"} exact={true}>
                             <Redirect to={"/zero/claim"} />
