@@ -44,9 +44,43 @@ const ClaimZero = () => {
     const { chainId } = useContext(EthersContext);
     const state = useClaimZeroState();
     if (chainId !== 1) return <ChangeNetwork />;
+    const [expired] = useState(() => {
+        const now = new Date();
+        return now.getUTCFullYear() >= 2022 && now.getUTCMonth() >= 3 && now.getUTCDate() >= 9;
+    });
     return (
         <View style={{ marginTop: Spacing.large }}>
-            {state.loading ? <Loading /> : state.user ? <LoginInfo state={state} /> : <SignInButtons state={state} />}
+            {expired ? (
+                <Expired />
+            ) : state.loading ? (
+                <Loading />
+            ) : state.user ? (
+                <LoginInfo state={state} />
+            ) : (
+                <SignInButtons state={state} />
+            )}
+        </View>
+    );
+};
+
+const Expired = () => {
+    const { twitter } = useColors();
+    const onPress = useLinker("https://twitter.com/thezeromoney", "", "_blank");
+    return (
+        <View>
+            <Heading text={"ZERO Airdrop Has Ended"} />
+            <Text light={true}>
+                {
+                    "ZERO airdrop ended at April 9th 00:00 UTC. To get further updates on how to get more ZERO, follow our twitter."
+                }
+            </Text>
+            <Button
+                icon={{ type: "material-community", name: "twitter", color: "white", size: 20 }}
+                title={"Follow Twitter"}
+                color={twitter}
+                onPress={onPress}
+                style={{ marginTop: Spacing.small }}
+            />
         </View>
     );
 };
