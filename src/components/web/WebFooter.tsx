@@ -16,7 +16,8 @@ const FLAGS = {
     kr: require("../../../assets/flags/kr.png"),
     fr: require("../../../assets/flags/fr.png"),
     es: require("../../../assets/flags/es.png"),
-    jp: require("../../../assets/flags/jp.png")
+    jp: require("../../../assets/flags/jp.png"),
+    de: require("../../../assets/flags/de.png")
 };
 
 const WebFooter = ({ simple = false }) => {
@@ -30,6 +31,7 @@ const WebFooter = ({ simple = false }) => {
                 <Flag name={"cn"} locale={"zh"} />
                 <Flag name={"jp"} locale={"jp"} />
                 <Flag name={"kr"} locale={"ko"} />
+                <Flag name={"de"} locale={"de"} />
             </FlexView>
             <Text note={true} style={{ marginTop: Spacing.tiny }}>
                 Built by the Dicktator of LevX DAO (v{Constants.manifest.version})
